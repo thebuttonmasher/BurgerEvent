@@ -1,15 +1,15 @@
 {
-  "title": "Light, Fast & Responsive",
-  "text": "This template is ready to use, so you don't need to change anything at a component level, unless you want to customize the default styling.",
+  "title": "What kinda burger you want?",
+  "text": "There's gonna be some good shit, but I need to know some stuff about how you like your burger",
   "section": [
     {
-      "title": "Why Antd?",
-      "content": "Ant Design is a React UI library that has a lot of easy-to-use components for building elegant UI.",
+      "title": "Do you eat kosher?",
+      "content": "I will not put cheese on your burger. You're still going to hell though.",
       "icon": "notes.svg"
     },
     {
-      "title": "Why styled-components?",
-      "content": "Styled Components gives you total control over your components.",
+      "title": "Are you vegeterian?",
+      "content": "I can get you some plant based stuff. That might suck ass though.",
       "icon": "notes.svg"
     }
   ]

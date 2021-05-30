@@ -57,7 +57,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
               </Col>
               <Col span={24}>
                 <TextArea
-                  placeholder="Your Message"
+                  placeholder="Your Diatery Restrictions"
                   value={values.message || ""}
                   name="message"
                   onChange={handleChange}
