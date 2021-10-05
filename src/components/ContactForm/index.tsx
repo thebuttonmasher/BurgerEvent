@@ -9,11 +9,13 @@ import Block from "../Block";
 import Input from "../../common/Input";
 import TextArea from "../../common/TextArea";
 import { ContactContainer, FormGroup, Span, ButtonContainer } from "./styles";
+import emailjs from 'emailjs-com';
 
 const Contact = ({ title, content, id, t }: ContactProps) => {
   const { values, errors, handleChange, handleSubmit } = useForm(
     validate
   ) as any;
+
 
   const ValidationType = ({ type }: ValidationTypeProps) => {
     const ErrorMessage = errors[type];
@@ -23,6 +25,16 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
       </Zoom>
     );
   };
+
+  function sendEmail(e) {
+    e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
+
+    emailjs.sendForm("service_n0wdpoc", "template_913f64j", e.target, 'user_XdETsi1yKjIQI1h4WvObr')
+      .then((result) => {
+          window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
+      }, (error) => {
+          console.log(error.text);
+      });}
 
   return (
     <ContactContainer id={id}>
@@ -34,11 +46,11 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
         </Col>
         <Col lg={12} md={12} sm={24} xs={24}>
           <Slide direction="right">
-            <FormGroup autoComplete="off" onSubmit={handleSubmit}>
+            <FormGroup autoComplete="off" onSubmit={sendEmail}>
               <Col span={24}>
                 <Input
                   type="text"
-                  name="name"
+                  name="from_name"
                   placeholder="Your Name"
                   value={values.name || ""}
                   onChange={handleChange}
@@ -48,7 +60,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
               <Col span={24}>
                 <Input
                   type="text"
-                  name="email"
+                  name="from_email"
                   placeholder="Your Email"
                   value={values.email || ""}
                   onChange={handleChange}
@@ -59,7 +71,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
                 <TextArea
                   placeholder="Your Diatery Restrictions"
                   value={values.message || ""}
-                  name="message"
+                  name="html_message"
                   onChange={handleChange}
                 />
                 <ValidationType type="message" />
